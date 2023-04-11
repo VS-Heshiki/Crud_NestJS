@@ -1,10 +1,11 @@
 import { LogInterceptor } from '@/interceptors/log.interceptor'
 import { UserService } from '@/users/user.service'
-import { CreateUserDto } from 'src/users/dtos/create-user.dto'
-import { PatchUserDto } from 'src/users/dtos/patch-user.dto'
-import { PutUserDto } from 'src/users/dtos/put-user.dto'
+import { CreateUserDto } from '@/users/dtos/create-user.dto'
+import { PatchUserDto } from '@/users/dtos/patch-user.dto'
+import { PutUserDto } from '@/users/dtos/put-user.dto'
 
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Put, UseInterceptors } from '@nestjs/common'
+import { ParamsId } from '@/decorators/params-id'
 
 @UseInterceptors(LogInterceptor)
 @Controller('users')
@@ -22,22 +23,22 @@ export class UserController {
     }
 
     @Get(':id')
-    async list (@Param('id', ParseIntPipe) id: number) {
+    async list (@ParamsId() id: number) {
         return this.userService.list(id)
     }
 
     @Patch(':id')
-    async editOne (@Body() data: PatchUserDto, @Param('id', ParseIntPipe) id: number) {
+    async editOne (@Body() data: PatchUserDto, @ParamsId() id: number) {
         return this.userService.update(id, data)
     }
 
     @Put(':id')
-    async edit (@Body() data: PutUserDto, @Param('id', ParseIntPipe) id: number) {
+    async edit (@Body() data: PutUserDto, @ParamsId() id: number) {
         return this.userService.update(id, data)
     }
 
     @Delete(':id')
-    async delete (@Param('id', ParseIntPipe) id) {
+    async delete (@ParamsId() id) {
         return this.userService.delete(id)
     }
 }
