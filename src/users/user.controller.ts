@@ -1,9 +1,10 @@
-import { LogInterceptor } from '@/interceptors/log.interceptor';
-import { UserService } from '@/users/user.service';
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Put, UseInterceptors } from '@nestjs/common';
-import { CreateUserDto } from 'src/users/dtos/create-user.dto';
-import { PatchUserDto } from 'src/users/dtos/patch-user.dto';
-import { PutUserDto } from 'src/users/dtos/put-user.dto';
+import { LogInterceptor } from '@/interceptors/log.interceptor'
+import { UserService } from '@/users/user.service'
+import { CreateUserDto } from 'src/users/dtos/create-user.dto'
+import { PatchUserDto } from 'src/users/dtos/patch-user.dto'
+import { PutUserDto } from 'src/users/dtos/put-user.dto'
+
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Put, UseInterceptors } from '@nestjs/common'
 
 @UseInterceptors(LogInterceptor)
 @Controller('users')
